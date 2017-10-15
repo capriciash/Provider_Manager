@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}Report an issue with this site!{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <form action="" method="POST">
+      {{ form.as_p }}
+      <!-- to validate that data is being submitted to local site -->
+      {% csrf_token %}
+      <input type="submit" class="button">
+    </form>
+  </div>
+{% endblock %}

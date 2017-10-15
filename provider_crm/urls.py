@@ -15,13 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns #5
 
 from directory.models import Provider
 
 from . import views #2
 
 urlpatterns = [
-    url(r'^directory/', include('directory.urls')), #5
+    url(r'^directory/', include('directory.urls', namespace='directory')), #5
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.project_intro), #2
+    url(r'^issues/$', views.issue_view, name='issue'), #form
+    url(r'^$', views.project_intro, name='home'), #2
 ]
+
+urlpatterns += staticfiles_urlpatterns() #5

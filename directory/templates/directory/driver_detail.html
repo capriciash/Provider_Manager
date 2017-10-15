@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+{% block static %}<link rel="stylesheet" href="{% static 'directory/css/directory.css' %}">{% endblock %}
+
+{% block title %}{{ driver.first_name }} {{driver.last_name }}{% endblock %}
+
+{% block content %}
+<article>
+  {% with fir=driver.first_name %}
+    <h2>{{ driver.first_name }} {{ driver.last_name }}</h2>
+    <h3>{{ driver.driver_id }}</h3>
+    Birthdate: {{ driver.birth_date }}<br>
+    Date of Hire: {{ driver.hire_date }}<br>
+    Company: <a href="{% url 'directory:provider_detail' pk=driver.provider.pk %}">
+              {{ driver.provider.business_name }}</a><br>
+    Notes:{{ driver.notes|linebreaks }} ({{ driver.notes|wordcount }} words.)
+  {% endwith %}
+</article>
+{% endblock %}

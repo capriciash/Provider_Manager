@@ -1,0 +1,5 @@
+{% for provider in providers %}
+  <div>
+    <a href="{% url 'directory:provider_detail' pk=provider.pk %}">{{ provider.business_name }}</a>
+  </div>
+{% endfor %}

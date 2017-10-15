@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+{% load contract_extras %}
+
+{% block static %}<link rel="stylesheet" href="{% static 'directory/css/directory.css' %}">{% endblock %}
+
+{% block title %}All Providers{% endblock %}
+
+{% block content %}
+<div class="cards">
+  {% for provider in providers %}
+  <div class="card">
+    <header><a href="{% url 'directory:provider_detail' pk=provider.pk %}">{{ provider.business_name }}</a></header>
+    <div class="card-copy">
+      {{ provider.address }}<br>
+      {{ provider.phone_number|format_as_phone }}<br>
+      Next contract ends: {% newest_contract %}<br>
+      {% if provider.notes|wordcount <= 5 %}
+        {{ provider.notes }}
+      {% else %}
+        {{ provider.notes|truncatewords:6 }}
+        <a href="{% url 'directory:provider_detail' pk=provider.pk %}">Read more</a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  <div>Have questions? Contact us! {{ email|urlize }}</div>
+</div>
+{% endblock %}
