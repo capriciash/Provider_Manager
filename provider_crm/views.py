@@ -23,6 +23,6 @@ def issue_view(request):
                 ['capriciash@gmail.com']
             )
             messages.add_message(request, messages.SUCCESS,
-            "Thanks for helping us improveo our site!")
+            "Thanks for helping us improve our site!")
             return HttpResponseRedirect(reverse('issue'))
     return render(request, 'issue_form.html', {'form': form})
