@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+{% load contract_extras %}
+
+{% block static %}<link rel="stylesheet" href="{% static 'directory/css/directory.css' %}">{% endblock %}
+
+{% block title %}Defensive Driving Records{% endblock %}
+
+{% block content %}
+<div>
+  <h1>All Defensive Driving Training Records</h1>
+  {% for ddriving in ddrivings %}
+    <ul>
+      <li>{{ ddriving.name }} - {{ ddriving.driver }} - {{ ddriving.training_date}}</li>
+    </ul>
+  {% endfor %}
+</div>
+{% endblock %}

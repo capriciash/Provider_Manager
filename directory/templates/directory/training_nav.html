@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+{% load contract_extras %}
+
+{% block static %}<link rel="stylesheet" href="{% static 'directory/css/directory.css' %}">{% endblock %}
+
+{% block title %}Trainings{% endblock %}
+
+{% block content %}
+<div>
+  <h1>Manage Trainings</h1>
+    <h3><a href="{% url 'directory:pass_list' %}">Passenger Assistance Safety and Security</h3>
+    <h3><a href="{% url 'directory:ddriving_list' %}">Defensive Driving</h3>
+    </ul>
+</div>
+{% endblock %}

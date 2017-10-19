@@ -10,11 +10,17 @@
   {% with fir=driver.first_name %}
     <h2>{{ driver.first_name }} {{ driver.last_name }}</h2>
     <h3>{{ driver.driver_id }}</h3>
-    Birthdate: {{ driver.birth_date }}<br>
-    Date of Hire: {{ driver.hire_date }}<br>
-    Company: <a href="{% url 'directory:provider_detail' pk=driver.provider.pk %}">
-              {{ driver.provider.business_name }}</a><br>
-    Notes:{{ driver.notes|linebreaks }} ({{ driver.notes|wordcount }} words.)
+    <p>Birthdate: {{ driver.birth_date }}</p>
+    <p>Date of Hire: {{ driver.hire_date }}</p>
+    <p>Company: <a href="{% url 'directory:provider_detail' pk=driver.provider.pk %}">
+              {{ driver.provider.business_name }}</a></p>
+    <p>Notes:{{ driver.notes|linebreaks }} ({{ driver.notes|wordcount }} words.)</p>
+    <p>Trainings:</p>
+    <ul>
+    {% for training in trainings %}
+      <li>{{ training.name }} - {{ training.training_date }} to {{ training.expiration }}</li>
+    {% endfor %}
+    </ul>
   {% endwith %}
 </article>
 {% endblock %}
