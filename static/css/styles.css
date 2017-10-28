@@ -1,28 +1,3 @@
-/** {
-  font-family: sans-serif;
-  background-color: purple;
-}
-
-h1 {
-  color: yellow;
-}
-
-h2 {
-  color: green;
-}
-
-h3 {
-  color: orange;
-}
-
-p {
-  color: purple;
-}
-
-a {
-  color: white;
-}*/
-
 html {
   box-sizing: border-box; }
 
@@ -144,30 +119,3 @@ article .steps {
   border-top: 2px solid #e6557e; }
   article .steps h3 + p {
     margin-left: 1em; }
-
-.nav_left {
-  background-color: grey;
-  height: 100%;
-  width: 200px;
-  float: right;
-  overflow-x: hidden; /* Disable horizontal scroll */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-}
-
-.nav_left a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 16px;
-    color: white;
-    display: block;
-    transition: 0.3s
-}
-
-.nav_left a:hover, .offcanvas a:focus{
-    color: black;
-}
-/*
-.page_content {
-  padding: 20px;
-}*/
-/*# sourceMappingURL=layout.css.map */
