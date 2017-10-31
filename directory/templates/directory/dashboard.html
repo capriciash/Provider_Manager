@@ -1,0 +1,293 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+{% load contract_extras %}
+
+{% block static %}<link rel="stylesheet" href="{% static 'directory/css/directory.css' %}">{% endblock %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block navbar %}
+<header class="py-2 bg-secondary text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><i class="fa fa-address-book"></i> Dashboard</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ACTIONS -->
+<section id="action" class="py-4 mb-4 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addProviderModal">
+          <i class="fa fa-plus"></i> Add Provider
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addDriverModal">
+          <i class="fa fa-plus"></i> Add Driver
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addUserModal">
+          <i class="fa fa-plus"></i> Add User
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVIDER MODAL -->
+<div class="modal fade" id="addProviderModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Add Provider</h5>
+        <button class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="mode">Mode</label></br>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="sedan"> Sedan
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="wheelchair"> Weelchair
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="stretcher"> Stretcher
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="secure"> Secure
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="ambulance"> Ambulance
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="contract">Upload Contract</label>
+            <input type="file" class="form-control-file">
+            <small class="form-text text-muted">Max Size 3 mb</small>
+          </div>
+          <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" data-dismiss="modal">Save & Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRIVER MODAL -->
+<div class="modal fade" id="addDriverModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Add Driver</h5>
+        <button class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="license">License Number</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="bday">Birthday</label>
+            <input type="date" name="bday">
+          </div>
+          <div class="form-group">
+            <label for="mode">Mode</label></br>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="sedan"> Sedan
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="wheelchair"> Wheelchair
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="stretcher"> Stretcher
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="secure"> Secure
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="ambulance"> Ambulance
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="hiredate">Date of Hire</label>
+            <input type="date" name="hiredate">
+          </div>
+          <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-success" data-dismiss="modal">Save & Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRAINING MODAL -->
+<div class="modal fade" id="addUserModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-white">
+        <h5 class="modal-title">Add User</h5>
+        <button class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="name">Confirm Password</label>
+            <input type="password" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-warning" data-dismiss="modal">Save & Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- POSTS -->
+<section id="dir_dashboard">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-header">
+            <h4>Providers</h4>
+          </div>
+          <table class="table table-striped">
+            <thead class="thead-inverse">
+              <tr>
+                <th>#</th>
+                <th>Provider Name</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Number of Drivers</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row">1</td>
+                <td>Name 1</td>
+                <td>123 Something St</td>
+                <td>555-555-5555</td>
+                <td>23</td>
+                <td><a href="provdetail.html" class="btn btn-secondary">
+                  <i class="fa fa-angle-double-right"></i> Details
+                </a></td>
+              </tr>
+              <tr>
+                <td scope="row">1</td>
+                <td>Name 2</td>
+                <td>123 Something St</td>
+                <td>555-555-5555</td>
+                <td>2</td>
+                <td><a href="provdetail.html" class="btn btn-secondary">
+                  <i class="fa fa-angle-double-right"></i> Details
+                </a></td>
+              </tr>
+              <tr>
+                <td scope="row">1</td>
+                <td>Name 3</td>
+                <td>123 Something St</td>
+                <td>555-555-5555</td>
+                <td>972</td>
+                <td><a href="provdetail.html" class="btn btn-secondary">
+                  <i class="fa fa-angle-double-right"></i> Details
+                </a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-center bg-primary text-white mb-3">
+          <div class="card-body">
+            <h3>Providers</h3>
+            <h1 class="display-4">
+              <i class="fa fa-address-book"></i> {{ num_providers }}
+            </h1>
+            <a href="{% url 'directory:provider_list' %}" class="btn btn-outline-light btn-sm">
+              Manage
+            </a>
+          </div>
+        </div>
+        <div class="card text-center bg-success text-white mb-3">
+          <div class="card-body">
+            <h3>Drivers</h3>
+            <h1 class="display-4">
+              <i class="fa fa-drivers-license"></i> {{ num_drivers }}
+            </h1>
+            <a href="{% url 'directory:driver_list' %}" class="btn btn-outline-light btn-sm">
+              Manage
+            </a>
+          </div>
+        </div>
+        <div class="card text-center bg-warning text-white mb-3">
+          <div class="card-body">
+            <h3>Trainings</h3>
+            <h1 class="display-4">
+              <i class="fa fa-pencil"></i> 942
+            </h1>
+            <a href="trainings.html" class="btn btn-outline-light btn-sm">
+              Manage
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

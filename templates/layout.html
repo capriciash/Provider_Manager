@@ -19,14 +19,14 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
       <div class="container">
-        <a href="{% url 'home' %}" class="navbar-brand" >Provider Directory</a>
+        <a href="{% url 'home' %}" class="navbar-brand" >Transportation Directory</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item px-2">
-              <a href="{% url 'directory:provider_list' %}" class="nav-link active">Home</a>
+              <a href="{% url 'directory:dashboard' %}" class="nav-link">Dashboard</a>
             </li>
             <li class="nav-item px-2">
               <a href="{% url 'directory:provider_list' %}" class="nav-link">Providers</a>
@@ -63,205 +63,21 @@
     </nav>
 
     <!-- SECOND NAVBAR -->
-    <header id="main-header" class="py-2 bg-primary text-white">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <h1><i class="fa fa-gear"></i> Dashboard</h1>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- ACTIONS -->
-    <section id="action" class="py-4 mb-4 bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addProviderModal">
-              <i class="fa fa-plus"></i> Add Provider
-            </a>
-          </div>
-          <div class="col-md-3">
-            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addDriverModal">
-              <i class="fa fa-plus"></i> Add Driver
-            </a>
-          </div>
-          <div class="col-md-3">
-            <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addUserModal">
-              <i class="fa fa-plus"></i> Add User
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-
-    <!-- PROVIDER MODAL -->
-    <div class="modal fade" id="addProviderModal">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title">Add Provider</h5>
-            <button class="close" data-dismiss="modal">
-              <span>&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="mode">Mode</label></br>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="sedan"> Sedan
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="wheelchair"> Weelchair
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="stretcher"> Stretcher
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="secure"> Secure
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="ambulance"> Ambulance
-                </label>
-              </div>
-              <div class="form-group">
-                <label for="contract">Upload Contract</label>
-                <input type="file" class="form-control-file">
-                <small class="form-text text-muted">Max Size 3 mb</small>
-              </div>
-              <div class="form-group">
-                <label for="notes">Notes</label>
-                <textarea class="form-control"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button class="btn btn-primary" data-dismiss="modal">Save & Submit</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DRIVER MODAL -->
-    <div class="modal fade" id="addDriverModal">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-success text-white">
-            <h5 class="modal-title">Add Driver</h5>
-            <button class="close" data-dismiss="modal">
-              <span>&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="fname">First Name</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="lname">Last Name</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="license">License Number</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="bday">Birthday</label>
-                <input type="date" name="bday">
-              </div>
-              <div class="form-group">
-                <label for="mode">Mode</label></br>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="sedan"> Sedan
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="wheelchair"> Wheelchair
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="stretcher"> Stretcher
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="secure"> Secure
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value="ambulance"> Ambulance
-                </label>
-              </div>
-              <div class="form-group">
-                <label for="hiredate">Date of Hire</label>
-                <input type="date" name="hiredate">
-              </div>
-              <div class="form-group">
-                <label for="notes">Notes</label>
-                <textarea class="form-control"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button class="btn btn-success" data-dismiss="modal">Save & Submit</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TRAINING MODAL -->
-    <div class="modal fade" id="addUserModal">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-warning text-white">
-            <h5 class="modal-title">Add User</h5>
-            <button class="close" data-dismiss="modal">
-              <span>&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="name">Confirm Password</label>
-                <input type="password" class="form-control">
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button class="btn btn-warning" data-dismiss="modal">Save & Submit</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    {% block navbar %}{% endblock %}
 
     <!-- SITE -->
-    <div class='site-container'>
-      <div class="page_content">
-        {% block content %}{% endblock %}
-      </div>
-      <div class="nav_left">
-      <h4>All Providers</h4>
-        {% nav_providers_list %}
+    {% block content %}{% endblock %}
+
+    <!-- FOOTER -->
+    <footer id="main-footer" class="bg-dark text-white mt-5 p-2">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class="lead text-center">Created by Ashley Riehl</p>
+        </div>
       </div>
     </div>
+
+  </footer>
   </body>
 </html>

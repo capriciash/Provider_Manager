@@ -1,8 +1,21 @@
 {% extends "layout.html" %}
 
-{% block title %}Report an issue with this site!{% endblock %}
+{% block title %}Report an Issue{% endblock %}
+
+{% block navbar %}
+<header class="py-2 bg-danger text-white mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><i class="fa fa-comment"></i> Report an Issue</h1>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
 
 {% block content %}
+<div class="site-container">
   <div class="row">
     <form action="" method="POST">
       {{ form.as_p }}
@@ -11,4 +24,5 @@
       <input type="submit" class="button">
     </form>
   </div>
+</div>
 {% endblock %}

@@ -4,26 +4,68 @@
 
 {% block static %}<link rel="stylesheet" href="{% static 'directory/css/directory.css' %}">{% endblock %}
 
-{% block title %}All Providers{% endblock %}
+{% block title %}Manage Providers{% endblock %}
 
-{% block content %}
-<div class="cards">
-  {% for provider in providers %}
-  <div class="card">
-    <header><a href="{% url 'directory:provider_detail' pk=provider.pk %}">{{ provider.business_name }}</a></header>
-    <div class="card-copy">
-      {{ provider.address }}<br>
-      {{ provider.phone_number|format_as_phone }}<br>
-      Next contract ends: {% newest_contract %}<br>
-      {% if provider.notes|wordcount <= 5 %}
-        {{ provider.notes }}
-      {% else %}
-        {{ provider.notes|truncatewords:6 }}
-        <a href="{% url 'directory:provider_detail' pk=provider.pk %}">Read more</a>
-      {% endif %}
+{% block navbar %}
+<header class="py-2 bg-primary text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><i class="fa fa-address-book"></i> Manage Providers</h1>
+      </div>
     </div>
   </div>
-  {% endfor %}
-  <div>Have questions? Contact us! {{ email|urlize }}</div>
-</div>
+</header>
+<section class="py-4 mb-4 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+          <a href="#" class="btn btn-primary btn-block">
+            <i class="fa fa-plus"></i> Add Provider
+          </a>
+        </div>
+      <div class="col-md-6 ml-auto">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search">
+          <span class="input-group-btn">
+            <button class="btn btn-primary">Search</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section id="providers">
+  <div class="container">
+    <table class="table table-hover">
+      <thead class="thead-default">
+        <tr>
+          <th>Provider Name</th>
+          <th>Address</th>
+          <th>Phone Number</th>
+          <th>Newest Contract</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for provider in providers %}
+        <tr>
+          <td scope="row"><a href="{% url 'directory:provider_detail' pk=provider.pk %}">{{ provider.business_name }}</a></td>
+          <td>{{ provider.address }}</td>
+          <td>{{ provider.phone_number|format_as_phone }}</td>
+          <td>{% newest_contract %}</td>
+          <td>{% if provider.notes|wordcount <= 5 %}
+            {{ provider.notes }}
+          {% else %}
+            {{ provider.notes|truncatewords:6 }}
+          {% endif %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
 {% endblock %}

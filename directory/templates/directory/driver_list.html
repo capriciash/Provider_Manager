@@ -4,10 +4,22 @@
 
 {% block static %}<link rel="stylesheet" href="{% static 'directory/css/directory.css' %}">{% endblock %}
 
-{% block title %}All Drivers{% endblock %}
+{% block title %}Manage Drivers{% endblock %}
+
+{% block navbar %}
+<header class="py-2 bg-success text-white mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><i class="fa fa-drivers-license"></i> Manage Drivers</h1>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
 
 {% block content %}
-<div>
+<div class="container">
   <h1>All Drivers</h1>
   {% for driver in drivers %}
     <ul>

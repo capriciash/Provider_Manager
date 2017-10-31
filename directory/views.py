@@ -10,6 +10,12 @@ from . import forms
 from .models import Provider #3
 from .models import Driver, PASS, DefensiveDriving, Training
 
+def dashboard(request):
+    num_providers = len(Provider.objects.all())
+    num_drivers = len(Driver.objects.all())
+    return render(request, 'directory/dashboard.html', {'num_providers': num_providers,
+                                                            'num_drivers': num_drivers})
+
 def provider_list(request): #3
     providers = Provider.objects.all() #3
     # output = ', '.join([str(provider) for provider in providers]) #3

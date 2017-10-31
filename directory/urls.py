@@ -11,5 +11,6 @@ urlpatterns = [ #4
     url(r'^pass/$', views.pass_list, name='pass_list'),
     url(r'^drivers/$', views.driver_list, name='driver_list'),
     url(r'^trainings/$', views.training_nav, name='training_nav'),
-    url(r'^$', views.provider_list, name='provider_list'), #4
+    url(r'^providers/$', views.provider_list, name='provider_list'),
+    url(r'^$', views.dashboard, name='dashboard'), #4
 ] #4

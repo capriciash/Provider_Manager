@@ -4,13 +4,24 @@
 
 {% block static %}<link rel="stylesheet" href="{% static 'directory/css/directory.css' %}">{% endblock %}
 
-{% block title %}Trainings{% endblock %}
+{% block title %}Manage Trainings{% endblock %}
+
+{% block navbar %}
+<header class="py-2 bg-warning text-white mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><i class="fa fa-pencil"></i> Manage Trainings</h1>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
 
 {% block content %}
-<div>
+<div class="container">
   <h1>Manage Trainings</h1>
-    <h3><a href="{% url 'directory:pass_list' %}">Passenger Assistance Safety and Security</h3>
-    <h3><a href="{% url 'directory:ddriving_list' %}">Defensive Driving</h3>
-    </ul>
+  <h4><a href="{% url 'directory:pass_list' %}">Passenger Assistance Safety and Security</h4>
+  <h4><a href="{% url 'directory:ddriving_list' %}">Defensive Driving</h4>
 </div>
 {% endblock %}
