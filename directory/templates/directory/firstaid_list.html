@@ -4,7 +4,7 @@
 
 {% block static %}<link rel="stylesheet" href="{% static 'directory/css/directory.css' %}">{% endblock %}
 
-{% block title %}Defensive Driving Records{% endblock %}
+{% block title %}First Aid Records{% endblock %}
 
 {% block navbar %}
 <!-- STRIPE -->
@@ -12,7 +12,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1><i class="fa fa-pencil"></i> Trainings - Defensive Driving</h1>
+        <h1><i class="fa fa-pencil"></i> Trainings - First Aid / CPR</h1>
       </div>
     </div>
   </div>
@@ -81,9 +81,9 @@
 
 {% block content %}
 <div class="container">
-  {% for ddriving in ddrivings %}
+  {% for faid in faids %}
     <ul>
-      <li>{{ ddriving.name }} - {{ ddriving.driver }} - {{ ddriving.training_date}}</li>
+      <li>{{ faid.name }} - {{ faid.driver }} - {{ faid.training_date}}</li>
     </ul>
   {% endfor %}
 </div>

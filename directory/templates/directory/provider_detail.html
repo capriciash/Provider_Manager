@@ -6,30 +6,116 @@
 
 {% block title %} {{ provider.business_name }} {% endblock title %}
 
+{% block navbar %}
+<!-- STRIPE -->
+<header class="py-2 bg-primary text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1><i class="fa fa-address-book"></i> Provider - {{ provider.business_name }}</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- BUTTONS -->
+<section class="py-4 mb-4 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+          <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editProviderModal">
+            <i class="fa fa-edit"></i> Edit Provider
+          </a>
+        </div>
+      <div class="col-md-6 ml-auto">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search">
+          <span class="input-group-btn">
+            <button class="btn btn-primary">Search</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVIDER MODAL -->
+<div class="modal fade" id="editProviderModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Edit Provider</h5>
+        <button class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="mode">Mode</label></br>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="sedan"> Sedan
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="wheelchair"> Weelchair
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="stretcher"> Stretcher
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="secure"> Secure
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="ambulance"> Ambulance
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="contract">Upload Contract</label>
+            <input type="file" class="form-control-file">
+            <small class="form-text text-muted">Max Size 3 mb</small>
+          </div>
+          <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" data-dismiss="modal">Save & Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
 {% block content %}
-<div>
+<div class="container">
   <article>
-    <h1>{{ provider.business_name}}</h1>
-    {{ provider.address }}
-    <h2>Contracts</h2>
+    <h3>Address</h3>
+    <p>{{ provider.address }}</p>
+    <h3>Contracts</h3>
     <ul>
     {% for contract in provider.contract_set.all %}
       <li>{{ contract.start_date|date:"m/d/Y" }} - {{ contract.end_date|date:"m/d/Y" }}</li>
     {% endfor %}
     </ul>
-    <section>
-    <h2>Drivers</h2>
+    <h3>Drivers</h3>
       <p>This provider has {{ provider.driver_set.count|apnumber }} driver{{ provider.driver_set.count|pluralize }}:
         {{ provider.driver_set.all|join:", " }}</p>
+      <ul>
       {% for driver in provider.driver_set.all %}
-        <h3>
-          <a href="{% url 'directory:driver_detail' provider_pk=driver.provider.pk driver_pk=driver.pk %}">
-            {{ driver.first_name }} {{ driver.last_name}}
+        <li>
+          <a href="{% url 'directory:driver_detail' provider_pk=provider.pk driver_pk=driver.pk %}">
+            {{ driver.first_name }} {{ driver.last_name}} - {{ driver.driver_id }}
           </a>
-        </h3>
-        {{ driver.driver_id }}
+        </li>
       {% endfor %}
-    </section>
+    </ul>
   </article>
   {% if user.is_authenticated %}
   <a href="{% url 'directory:add_driver' provider_pk=provider.id %}" class="button">Add New Driver</a>

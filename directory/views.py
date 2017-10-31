@@ -8,7 +8,7 @@ from itertools import chain
 
 from . import forms
 from .models import Provider #3
-from .models import Driver, PASS, DefensiveDriving, Training
+from .models import Driver, PASS, DefensiveDriving, Training, FirstAidCPR
 
 def dashboard(request):
     num_providers = len(Provider.objects.all())
@@ -28,13 +28,13 @@ def driver_list(request):
     drivers = Driver.objects.all()
     return render(request, 'directory/driver_list.html', {'drivers': drivers})
 
-def provider_detail(request, pk):
+def provider_detail(request, provider_pk):
     # provider = Provider.objects.get(pk=pk) replaced with the 404 error line below
-    provider = get_object_or_404(Provider, pk=pk)
+    provider = get_object_or_404(Provider, pk=provider_pk)
     return render(request, 'directory/provider_detail.html', {'provider': provider})
 
 def driver_detail(request, provider_pk, driver_pk):
-    driver = get_object_or_404(Driver, provider_id=provider_pk, pk=driver_pk)
+    driver = get_object_or_404(Driver, pk=driver_pk)
     trainings = sorted(chain(driver.pass_set.all(), driver.defensivedriving_set.all()),
                 key=lambda t: t.expiration)
     return render(request, 'directory/driver_detail.html', {
@@ -52,6 +52,16 @@ def ddriving_list(request):
 def pass_list(request):
     passes = PASS.objects.all()
     return render(request, 'directory/pass_list.html', {'passes': passes})
+
+def firstaid_list(request):
+    faids = FirstAidCPR.objects.all()
+    return render(request, 'directory/firstaid_list.html', {'faids': faids})
+
+def user_profile(request):
+    return render(request, 'directory/user_profile.html')
+
+def login(request):
+    return render(request, 'directory/login.html')
 
 # @login_required
 # def provider_create(request):

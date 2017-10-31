@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+{% block static %}<link rel="stylesheet" href="{% static 'directory/css/directory.css' %}">{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block navbar %}
+  <!-- SECOND NAVBAR -->
+  <header class="py-2 bg-secondary text-white mb-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1><i class="fa fa-user"></i> Directory Admin</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+  <!-- LOGIN -->
+  <section id="login">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-header">
+              <h4>Account Login</h4>
+            </div>
+            <div class="card-body">
+              <form action="index.html">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="password">Confirm Password</label>
+                  <input type="password" class="form-control">
+                </div>
+                <input type="submit" class="btn btn-primary btn-block" value="Login">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

@@ -6,9 +6,80 @@
 
 {% block title %}PASS Records{% endblock %}
 
+{% block navbar %}
+<!-- STRIPE -->
+<header class="py-2 bg-warning text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1><i class="fa fa-pencil"></i> Trainings - PASS</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- BUTTONS -->
+<section class="py-4 mb-4 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+          <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#newTrainingModal">
+            <i class="fa fa-plus"></i> Add Training Record
+          </a>
+        </div>
+      <div class="col-md-6 ml-auto">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search">
+          <span class="input-group-btn">
+            <button class="btn btn-warning">Search</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINING MODAL -->
+<div class="modal fade" id="newTrainingModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-white">
+        <h5 class="modal-title">Add Training Record</h5>
+        <button class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="name">Confirm Password</label>
+            <input type="password" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-warning" data-dismiss="modal">Save & Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
 {% block content %}
-<div>
-  <h1>All PASS Training Records</h1>
+<div class="container">
   {% for pass in passes %}
     <ul>
       <li>{{ pass.name }} - {{ pass.driver }} - {{ pass.training_date}}</li>

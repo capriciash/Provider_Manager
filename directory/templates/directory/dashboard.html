@@ -10,7 +10,7 @@
 <header class="py-2 bg-secondary text-white">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <h1><i class="fa fa-address-book"></i> Dashboard</h1>
       </div>
     </div>
@@ -197,6 +197,7 @@
 {% endblock %}
 
 {% block content %}
+
 <!-- POSTS -->
 <section id="dir_dashboard">
   <div class="container">
@@ -255,8 +256,8 @@
       <div class="col-md-3">
         <div class="card text-center bg-primary text-white mb-3">
           <div class="card-body">
-            <h3>Providers</h3>
-            <h1 class="display-4">
+            <h4>Providers</h4>
+            <h1 class="display-5">
               <i class="fa fa-address-book"></i> {{ num_providers }}
             </h1>
             <a href="{% url 'directory:provider_list' %}" class="btn btn-outline-light btn-sm">
@@ -266,8 +267,8 @@
         </div>
         <div class="card text-center bg-success text-white mb-3">
           <div class="card-body">
-            <h3>Drivers</h3>
-            <h1 class="display-4">
+            <h4>Drivers</h4>
+            <h1 class="display-5">
               <i class="fa fa-drivers-license"></i> {{ num_drivers }}
             </h1>
             <a href="{% url 'directory:driver_list' %}" class="btn btn-outline-light btn-sm">
@@ -277,11 +278,11 @@
         </div>
         <div class="card text-center bg-warning text-white mb-3">
           <div class="card-body">
-            <h3>Trainings</h3>
-            <h1 class="display-4">
+            <h4>Trainings</h4>
+            <h1 class="display-5">
               <i class="fa fa-pencil"></i> 942
             </h1>
-            <a href="trainings.html" class="btn btn-outline-light btn-sm">
+            <a href="{% url 'directory:training_nav' %}" class="btn btn-outline-light btn-sm">
               Manage
             </a>
           </div>

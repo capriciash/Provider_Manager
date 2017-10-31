@@ -3,16 +3,115 @@
 
 {% block static %}<link rel="stylesheet" href="{% static 'directory/css/directory.css' %}">{% endblock %}
 
-{% block title %}{{ driver.first_name }} {{driver.last_name }}{% endblock %}
+{% block title %}{{ driver }}{% endblock %}
+
+{% block navbar %}
+<!-- STRIPE -->
+<header class="py-2 bg-success text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1><i class="fa fa-drivers-license"></i> Driver - {{ driver }}</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- BUTTONS -->
+<section class="py-4 mb-4 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+          <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#editDriverModal">
+            <i class="fa fa-edit"></i> Edit Driver
+          </a>
+        </div>
+      <div class="col-md-6 ml-auto">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search">
+          <span class="input-group-btn">
+            <button class="btn btn-success">Search</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DRIVER MODAL -->
+<div class="modal fade" id="editDriverModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Add Driver</h5>
+        <button class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="license">License Number</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="bday">Birthday</label>
+            <input type="date" name="bday">
+          </div>
+          <div class="form-group">
+            <label for="mode">Mode</label></br>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="sedan"> Sedan
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="wheelchair"> Wheelchair
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="stretcher"> Stretcher
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="secure"> Secure
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="ambulance"> Ambulance
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="hiredate">Date of Hire</label>
+            <input type="date" name="hiredate">
+          </div>
+          <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-success" data-dismiss="modal">Save & Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
 
 {% block content %}
-<article>
+<section>
+  <div class="container">
   {% with fir=driver.first_name %}
     <h2>{{ driver.first_name }} {{ driver.last_name }}</h2>
-    <h3>{{ driver.driver_id }}</h3>
+    <h3># {{ driver.driver_id }}</h3>
     <p>Birthdate: {{ driver.birth_date }}</p>
     <p>Date of Hire: {{ driver.hire_date }}</p>
-    <p>Company: <a href="{% url 'directory:provider_detail' pk=driver.provider.pk %}">
+    <p>Company: <a href="{% url 'directory:provider_detail' provider_pk=driver.provider.pk %}">
               {{ driver.provider.business_name }}</a></p>
     <p>Notes:{{ driver.notes|linebreaks }} ({{ driver.notes|wordcount }} words.)</p>
     <p>Trainings:</p>
@@ -22,5 +121,6 @@
     {% endfor %}
     </ul>
   {% endwith %}
-</article>
+  </div>
+</section>
 {% endblock %}

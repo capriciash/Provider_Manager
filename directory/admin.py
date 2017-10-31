@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Provider, Driver, Provider_Contact, Contract, PASS, DefensiveDriving
+from .models import Provider, Driver, Provider_Contact, Contract, PASS, DefensiveDriving, FirstAidCPR
 
 class DriverInline(admin.TabularInline):
     model = Driver
@@ -19,4 +19,5 @@ admin.site.register(Driver)
 admin.site.register(Provider_Contact)
 admin.site.register(PASS)
 admin.site.register(DefensiveDriving)
+admin.site.register(FirstAidCPR)
 # admin.site.register(Background_Check)

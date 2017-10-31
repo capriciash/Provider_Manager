@@ -4,23 +4,25 @@
 
 {% block static %}<link rel="stylesheet" href="{% static 'directory/css/directory.css' %}">{% endblock %}
 
-{% block title %}Manage Providers{% endblock %}
+{% block title %}Providers{% endblock %}
 
 {% block navbar %}
+<!-- STRIPE -->
 <header class="py-2 bg-primary text-white">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <h1><i class="fa fa-address-book"></i> Manage Providers</h1>
+      <div class="col-md-12">
+        <h1><i class="fa fa-address-book"></i> Providers</h1>
       </div>
     </div>
   </div>
 </header>
+<!-- BUTTONS -->
 <section class="py-4 mb-4 bg-light">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-          <a href="#" class="btn btn-primary btn-block">
+          <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newProviderModal">
             <i class="fa fa-plus"></i> Add Provider
           </a>
         </div>
@@ -35,10 +37,63 @@
     </div>
   </div>
 </section>
+
+<!-- PROVIDER MODAL -->
+<div class="modal fade" id="newProviderModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Add Provider</h5>
+        <button class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="mode">Mode</label></br>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="sedan"> Sedan
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="wheelchair"> Weelchair
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="stretcher"> Stretcher
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="secure"> Secure
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="ambulance"> Ambulance
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="contract">Upload Contract</label>
+            <input type="file" class="form-control-file">
+            <small class="form-text text-muted">Max Size 3 mb</small>
+          </div>
+          <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" data-dismiss="modal">Save & Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block content %}
-<section id="providers">
+<section>
   <div class="container">
     <table class="table table-hover">
       <thead class="thead-default">
@@ -53,7 +108,7 @@
       <tbody>
       {% for provider in providers %}
         <tr>
-          <td scope="row"><a href="{% url 'directory:provider_detail' pk=provider.pk %}">{{ provider.business_name }}</a></td>
+          <td scope="row"><a href="{% url 'directory:provider_detail' provider_pk=provider.pk %}">{{ provider.business_name }}</a></td>
           <td>{{ provider.address }}</td>
           <td>{{ provider.phone_number|format_as_phone }}</td>
           <td>{% newest_contract %}</td>
