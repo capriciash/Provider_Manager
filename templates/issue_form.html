@@ -16,12 +16,22 @@
 
 {% block content %}
 <div class="site-container">
+  {% if messages %}
+    <div class="row justify-content-center">
+      {% for message in messages %}
+        <div data-alert class="alert alert-success">
+          {{ message }}
+          <a href="#" class="close" data-dismiss="alert">&times;</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
   <div class="row">
     <form action="" method="POST">
       {{ form.as_p }}
       <!-- to validate that data is being submitted to local site -->
       {% csrf_token %}
-      <input type="submit" class="button">
+      <input type="submit" class="button btn btn-secondary">
     </form>
   </div>
 </div>
