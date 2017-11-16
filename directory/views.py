@@ -69,19 +69,19 @@ def login(request):
 
 
 @login_required
-def add_driver(request):
-    # provider = get_object_or_404(Provider, pk=provider_pk)
+def add_driver(request, provider_pk):
+    provider = get_object_or_404(Provider, pk=provider_pk)
     form = forms.DriverForm()
 
     if request.method == 'POST':
         form = forms.DriverForm(request.POST)
         if form.is_valid():
             driver = form.save(commit=False)
-            # driver.provider = provider
+            driver.provider = provider
             driver.save()
             messages.add_message(request, messages.SUCCESS, "Driver added!")
             return HttpResponseRedirect(driver.get_absolute_url())
-    return render(request, 'directory/driver_form.html', {'form': form})
+    return render(request, 'directory/driver_form.html', {'form': form, 'provider': provider})
 
 @login_required
 def add_provider(request):
