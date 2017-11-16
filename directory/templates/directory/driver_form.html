@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+{% block title %}Add Driver | {{ provider.business_name }} {{ block.super }}{% endblock %}
+
+{% block navbar %}
+<!-- STRIPE -->
+<header class="py-2 bg-success text-white mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1><i class="fa fa-drivers-license"></i> Add a New Driver for {{ provider }}</h1>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock navbar %}
+
+{% block content %}
+<div class="container">
+  <div class="columns">
+    <form method="POST" action="">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" class="btn btn-success" value="Save">
+    </form>
+  </div>
+</div>
+{% endblock %}

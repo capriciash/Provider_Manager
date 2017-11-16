@@ -13,6 +13,11 @@ class Provider(models.Model):
     def __str__(self):
         return self.business_name
 
+    def get_absolute_url(self):
+        return reverse('directory:provider_detail', kwargs={
+            'provider_pk': self.id,
+    })
+
 class Contract(models.Model):
     provider = models.ForeignKey(Provider)
     contract = models.FileField(upload_to='provider_contracts')
@@ -34,6 +39,12 @@ class Driver(models.Model):
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
+
+    def get_absolute_url(self):
+        return reverse('directory:driver_detail', kwargs={
+            'provider_pk': self.provider_id,
+            'driver_pk': self.id
+    })
 
     class Meta:
         ordering = ['first_name', 'last_name', ]

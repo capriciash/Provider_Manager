@@ -42,6 +42,9 @@ def driver_detail(request, provider_pk, driver_pk):
             'trainings': trainings
         })
 
+    def get_absolute_url(self):
+        return reverse('directory/driver/detail.html', kwargs={'provider_pk': self.provider.pk, 'driver_pk': self.pk})
+
 def training_nav(request):
     return render(request, 'directory/training_nav.html')
 
@@ -63,34 +66,60 @@ def user_profile(request):
 def login(request):
     return render(request, 'directory/login.html')
 
-# @login_required
-# def provider_create(request):
-#     provider = get_object_or_404(models.Provider)
-#     form = forms.ProviderForm()
-#     if request.method == 'POST':
-#         form = form.ProviderForm(request.POST)
-#         if form.is_valid():
-#             provider = form.save(commmit=False)
-#             #modify something first, if desired
-#             provider.save()
-#             messages.add_message(request, messages.SUCCESS, "Provider added!")
-#             return HttpResponseRedirect(provider.get_absolute_url())
-#     return render(request, 'directory/provider_form.html', {'form': form})
+
 
 @login_required
-def add_driver(request, provider_pk):
-    provider = get_object_or_404(Provider, pk=provider_pk)
+def add_driver(request):
+    # provider = get_object_or_404(Provider, pk=provider_pk)
     form = forms.DriverForm()
 
     if request.method == 'POST':
-        form = form.DriverForm(request.POST)
+        form = forms.DriverForm(request.POST)
         if form.is_valid():
-            driver = form.save(commmit=False)
-            driver.provider = provider
+            driver = form.save(commit=False)
+            # driver.provider = provider
             driver.save()
             messages.add_message(request, messages.SUCCESS, "Driver added!")
             return HttpResponseRedirect(driver.get_absolute_url())
-    return render(request, 'directory/add_driver.html', {'form': form, 'provider':provider})
+    return render(request, 'directory/driver_form.html', {'form': form})
+
+@login_required
+def add_provider(request):
+    form = forms.ProviderForm()
+
+    if request.method == 'POST':
+        form = forms.ProviderForm(request.POST)
+        if form.is_valid():
+            provider = form.save()
+            messages.add_message(request, messages.SUCCESS, "Provider added!")
+            return HttpResponseRedirect(provider.get_absolute_url())
+    return render(request, 'directory/provider_form.html', {'form': form})
+
+@login_required
+def edit_provider(request, provider_pk):
+    provider = get_object_or_404(Provider, pk=provider_pk)
+    form = forms.ProviderForm(instance=provider)
+
+    if request.method == 'POST':
+        form = forms.ProviderForm(instance=provider, data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, "Updated {}".format(form.cleaned_data['business_name']))
+            return HttpResponseRedirect(provider.get_absolute_url())
+    return render(request, 'directory/provider_form.html', {'form': form})
+
+@login_required
+def edit_driver(request, provider_pk, driver_pk):
+    driver = get_object_or_404(Driver, pk=driver_pk, provider_id=provider_pk)
+    form = forms.DriverForm(instance=driver)
+
+    if request.method == 'POST':
+        form = forms.DriverForm(instance=driver, data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, "Updated {} {}".format(form.cleaned_data['first_name'], form.cleaned_data['last_name']))
+            return HttpResponseRedirect(driver.get_absolute_url())
+    return render(request, 'directory/driver_form.html', {'form': form})
 
 # def training_detail(request, driver_pk, training_pk):
 #     driver = get_object_or_404(Driver, provider_id=provider_pk, pk=driver_pk)

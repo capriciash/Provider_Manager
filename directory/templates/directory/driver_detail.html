@@ -22,7 +22,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-          <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#editDriverModal">
+          <a href="{% url 'directory:edit_driver' provider_pk=driver.provider.pk driver_pk=driver.id %}" class="btn btn-success btn-block">
             <i class="fa fa-edit"></i> Edit Driver
           </a>
         </div>
@@ -37,70 +37,6 @@
     </div>
   </div>
 </section>
-
-<!-- DRIVER MODAL -->
-<div class="modal fade" id="editDriverModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header bg-success text-white">
-        <h5 class="modal-title">Add Driver</h5>
-        <button class="close" data-dismiss="modal">
-          <span>&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="fname">First Name</label>
-            <input type="text" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="lname">Last Name</label>
-            <input type="text" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="license">License Number</label>
-            <input type="text" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="bday">Birthday</label>
-            <input type="date" name="bday">
-          </div>
-          <div class="form-group">
-            <label for="mode">Mode</label></br>
-            <label class="checkbox-inline">
-              <input type="checkbox" value="sedan"> Sedan
-            </label>
-            <label class="checkbox-inline">
-              <input type="checkbox" value="wheelchair"> Wheelchair
-            </label>
-            <label class="checkbox-inline">
-              <input type="checkbox" value="stretcher"> Stretcher
-            </label>
-            <label class="checkbox-inline">
-              <input type="checkbox" value="secure"> Secure
-            </label>
-            <label class="checkbox-inline">
-              <input type="checkbox" value="ambulance"> Ambulance
-            </label>
-          </div>
-          <div class="form-group">
-            <label for="hiredate">Date of Hire</label>
-            <input type="date" name="hiredate">
-          </div>
-          <div class="form-group">
-            <label for="notes">Notes</label>
-            <textarea class="form-control"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button class="btn btn-success" data-dismiss="modal">Save & Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
 {% endblock %}
 
 {% block content %}

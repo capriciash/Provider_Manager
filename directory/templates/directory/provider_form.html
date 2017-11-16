@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+{% block title %}{{ form.instance.business_name|default:"Add Provider" }}{% endblock %}
+
+{% block navbar %}
+<!-- STRIPE -->
+<header class="py-2 bg-primary text-white mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1><i class="fa fa-address-book"></i> {{ form.instance.business_name|default:"Add a New Provider" }}</h1>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock navbar %}
+
+{% block content %}
+<div class="container">
+  <div class="columns">
+    <form method="POST" action="">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" class="btn btn-primary" value="Save">
+    </form>
+  </div>
+</div>
+{% endblock %}

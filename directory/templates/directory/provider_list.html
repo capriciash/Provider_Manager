@@ -22,10 +22,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-          <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newProviderModal">
+        {% if user.is_authenticated %}
+          <a href="{% url 'directory:add_provider' %}" class="btn btn-primary btn-block">
             <i class="fa fa-plus"></i> Add Provider
           </a>
-        </div>
+        {% endif %}
+      </div>
       <div class="col-md-6 ml-auto">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search">
@@ -103,12 +105,15 @@
           <th>Phone Number</th>
           <th>Newest Contract</th>
           <th>Notes</th>
+          {% if user.is_authenticated %}
+            <th>Edit</th>
+          {% endif %}
         </tr>
       </thead>
       <tbody>
       {% for provider in providers %}
         <tr>
-          <td scope="row"><a href="{% url 'directory:provider_detail' provider_pk=provider.pk %}">{{ provider.business_name }}</a></td>
+          <td scope="row"><a href="{% url 'directory:provider_detail' provider_pk=provider.id %}">{{ provider.business_name }}</a></td>
           <td>{{ provider.address }}</td>
           <td>{{ provider.phone_number|format_as_phone }}</td>
           <td>{% newest_contract %}</td>
@@ -117,6 +122,13 @@
           {% else %}
             {{ provider.notes|truncatewords:6 }}
           {% endif %}</td>
+          {% if user.is_authenticated %}
+          <td>
+            <a href="{% url 'directory:edit_provider' provider_pk=provider.id %}" class="btn btn-primary">
+              Edit
+            </a>
+          </td>
+          {% endif %}
         </tr>
       {% endfor %}
       </tbody>
