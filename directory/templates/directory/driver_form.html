@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% load static from staticfiles %}
 
-{% block title %}Add Driver | {{ provider.business_name }} {{ block.super }}{% endblock %}
+{% block title %}{{ form.instance.str|default:"Add Driver" }}{% endblock %}
 
 {% block navbar %}
 <!-- STRIPE -->
@@ -9,7 +9,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1><i class="fa fa-drivers-license"></i> Add a New Driver for {{ provider }}</h1>
+        <h1><i class="fa fa-drivers-license"></i> {{form.instance.str|default:"Add A New Driver" }}</h1>
       </div>
     </div>
   </div>
